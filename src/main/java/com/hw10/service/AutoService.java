@@ -55,6 +55,7 @@ public class AutoService {
     }
 
     public void delete(String id){
+        AUTO_REPOSITORY.deleteCar(id);
         System.out.println(id);
     }
 

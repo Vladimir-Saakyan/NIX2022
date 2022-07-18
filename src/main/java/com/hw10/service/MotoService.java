@@ -50,10 +50,13 @@ public class MotoService {
 
     public void updateMoto(Moto moto) {
         MOTO_REPOSITORY.updateMoto(moto);
+        System.out.println(MOTO_REPOSITORY.getAllMoto());
     }
 
     public void deleteMoto(String id){
         System.out.println(id);
+        System.out.println(MOTO_REPOSITORY.getAllMoto());
+
     }
 
 }

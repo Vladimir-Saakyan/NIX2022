@@ -51,9 +51,10 @@ public class BusService {
 
     public void updateBus(Bus bus) {
         BUS_REPIOSITORY.updateBus(bus);
-    }
+        System.out.println(BUS_REPIOSITORY.getAllBus());    }
 
     public void deleteBus(String id){
         System.out.println(id);
+        System.out.println(BUS_REPIOSITORY.getAllBus());
     }
 }
