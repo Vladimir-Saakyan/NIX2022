@@ -4,6 +4,8 @@ import com.hw10.model.Bus;
 import com.hw10.model.Manufacturer;
 import com.hw10.model.Moto;
 import com.hw10.repository.MotoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MotoService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(BusService.class);
 
     final static Random RANDOM = new Random();
 
@@ -27,6 +30,7 @@ public class MotoService {
                    "Model MOto-" + RANDOM.nextInt(1000)
            );
            result.add(moto);
+           LOGGER.debug("Created moto {}", moto.getId());
 
        } return result;
 
@@ -50,13 +54,9 @@ public class MotoService {
 
     public void updateMoto(Moto moto) {
         MOTO_REPOSITORY.updateMoto(moto);
-        System.out.println(MOTO_REPOSITORY.getAllMoto());
     }
 
     public void deleteMoto(String id){
-        System.out.println(id);
-        System.out.println(MOTO_REPOSITORY.getAllMoto());
-
-    }
+        MOTO_REPOSITORY.deleteMoto(id);    }
 
 }

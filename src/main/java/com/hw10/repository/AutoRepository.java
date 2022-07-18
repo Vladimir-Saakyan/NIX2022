@@ -1,12 +1,16 @@
 package com.hw10.repository;
 
 import com.hw10.model.Auto;
+import com.hw10.service.AutoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class AutoRepository implements CrudRepositoryAuto {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutoService.class);
     private final List<Auto> autos;
 
     public AutoRepository() {
@@ -59,6 +63,7 @@ public class AutoRepository implements CrudRepositoryAuto {
             if (auto.getId().equals(id)) {
                 iterator.remove();
                 System.out.println("Removed auto: \n"+ auto);
+                LOGGER.debug("\n* Log remove auto : " + auto.getId()+"*");
                 return true;
             }
         }

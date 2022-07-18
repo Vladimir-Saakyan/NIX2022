@@ -52,6 +52,7 @@ public class AutoService {
 
     public void update(Auto auto) {
         AUTO_REPOSITORY.updateCar(auto);
+
     }
 
     public void delete(String id){

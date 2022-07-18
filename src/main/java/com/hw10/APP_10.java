@@ -50,5 +50,6 @@ public class APP_10 {
         MOTO_SERVICE.updateMoto(moto);
         MOTO_SERVICE.deleteMoto(moto.getId());
         System.out.println("- - - - - - -  after remove moto  - - - - - - - - ");
+        MOTO_SERVICE.printAllMotos();
     }
 }
