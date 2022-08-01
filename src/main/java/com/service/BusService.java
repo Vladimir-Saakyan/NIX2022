@@ -1,10 +1,8 @@
-package com.hw10.service;
+package com.service;
 
-import com.hw10.model.Auto;
-import com.hw10.model.Bus;
-import com.hw10.model.Manufacturer;
-import com.hw10.repository.AutoRepository;
-import com.hw10.repository.BusRepiository;
+import com.model.Bus;
+import com.model.Manufacturer;
+import com.repository.BusRepiository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +14,11 @@ import java.util.Random;
 public class BusService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BusService.class);
     private static final Random RANDOM = new Random();
-    private static final BusRepiository BUS_REPIOSITORY = new BusRepiository();
+    private final BusRepiository busRepository;
+
+    public BusService(BusRepiository busRepository){
+        this.busRepository = busRepository;
+    }
 
     public List<Bus> createBuses(int count) {
         List<Bus> result = new LinkedList<>();
@@ -28,6 +30,7 @@ public class BusService {
                     "Model Bus-" + RANDOM.nextInt(1000)
             );
             result.add(bus);
+            busRepository.createBus(bus);
             LOGGER.debug("Created bus {}", bus.getId());
         }
         return result;
@@ -40,21 +43,29 @@ public class BusService {
     }
 
     public void saveBuses(List<Bus> buses) {
-        BUS_REPIOSITORY.createBus(buses);
+        busRepository.createAllBus(buses);
     }
 
     public void printAllBus() {
-        for (Bus bus : BUS_REPIOSITORY.getAllBus()) {
+        for (Bus bus : busRepository.getAllBus()) {
             System.out.println(bus);
         }
     }
 
+    public Bus findOneById(String id) {
+        if(id == null) {
+           return busRepository.getByIdBus("");
+        } else  {
+           return busRepository.getByIdBus(id);
+        }
+    }
+
     public void updateBus(Bus bus) {
-        BUS_REPIOSITORY.updateBus(bus);
+        busRepository.updateBus(bus);
          }
 
     public void deleteBus(String id){
-        BUS_REPIOSITORY.deleteBus(id);
+        busRepository.deleteBus(id);
 
     }
 }

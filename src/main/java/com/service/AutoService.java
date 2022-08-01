@@ -1,8 +1,8 @@
-package com.hw11.service;
+package com.service;
 
-import com.hw11.model.Auto;
-import com.hw11.model.Manufacturer;
-import com.hw11.repository.AutoRepository;
+import com.model.Auto;
+import com.model.Manufacturer;
+import com.repository.AutoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +17,7 @@ public class AutoService {
     private static final Random RANDOM = new Random();
     private final AutoRepository autoRepository;
 
-    public AutoService(AutoRepository autoRepository) {
+    public AutoService(AutoRepository autoRepository){
         this.autoRepository = autoRepository;
     }
 
@@ -31,7 +31,7 @@ public class AutoService {
                     "Model-" + RANDOM.nextInt(1000)
             );
             result.add(auto);
-            autoRepository.save(auto);
+            autoRepository.createCar(auto);
             LOGGER.debug("Created auto {}", auto.getId());
         }
         return result;
@@ -44,20 +44,30 @@ public class AutoService {
     }
 
     public void saveAutos(List<Auto> autos) {
-        autoRepository.saveAll(autos);
+        autoRepository.createAllCar(autos);
     }
 
     public void printAll() {
-        for (Auto auto : autoRepository.getAll()) {
+        for (Auto auto : autoRepository.getAllCar()) {
             System.out.println(auto);
         }
     }
 
     public Auto findOneById(String id) {
-        if (id == null) {
-            return autoRepository.getById("");
-        } else {
-            return autoRepository.getById(id);
+        if(id == null) {
+            return autoRepository.getByIdCar("");
+        }else {
+            return autoRepository.getByIdCar(id);
         }
     }
+    public void update(Auto auto) {
+        autoRepository.updateCar(auto);
+
+    }
+
+    public void delete(String id){
+        autoRepository.deleteCar(id);
+        System.out.println(id);
+    }
+
 }

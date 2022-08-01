@@ -1,10 +1,11 @@
-package com.hw10.repository;
+package com.repository;
 
-import com.hw10.model.Auto;
-import com.hw10.service.AutoService;
+import com.model.Auto;
+import com.service.AutoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,12 +35,20 @@ public class AutoRepository implements CrudRepositoryAuto {
 
     @Override
     public boolean createCar(Auto auto) {
-        autos.add(auto);
-        return true;
+        if(auto == null) {
+            throw new IllegalArgumentException("Invalid auto");
+        }
+        if(auto.getPrice().equals(BigDecimal.ZERO)){
+            auto.setPrice(BigDecimal.valueOf(-1));
+        }
+        return  autos.add(auto);
     }
 
     @Override
-    public boolean createCar(List<Auto> auto) {
+    public boolean createAllCar(List<Auto> auto) {
+        if(auto == null) {
+            return false;
+        }
         return autos.addAll(auto);
     }
 
@@ -72,7 +81,6 @@ public class AutoRepository implements CrudRepositoryAuto {
 
     private static class AutoCopy {
         static void copy(final Auto from, final Auto to) {
-            to.setManufacturer(from.getManufacturer());
             to.setModel(from.getModel());
             to.setBodyType(from.getBodyType());
             to.setPrice(from.getPrice());

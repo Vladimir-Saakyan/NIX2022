@@ -1,6 +1,6 @@
-package com.hw10.repository;
+package com.repository;
 
-import com.hw10.model.Moto;
+import com.model.Moto;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface CrudRepositoryMoto {
 
     boolean createMoto(Moto moto);
 
-    boolean createMoto(List<Moto> moto);
+    boolean createAllMoto(List<Moto> moto);
 
     boolean updateMoto(Moto moto);
 
