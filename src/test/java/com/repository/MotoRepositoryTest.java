@@ -118,6 +118,14 @@ class MotoRepositoryTest {
     }
 
     @Test
+    void deleteMoto_negative() {
+        final boolean actual = target.deleteMoto("");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
     void deleteMoto() {
+        final boolean actual = target.deleteMoto(moto.getId());
+        Assertions.assertTrue(actual);
     }
 }

@@ -105,6 +105,14 @@ class BusRepiositoryTest {
     }
 
     @Test
+    void deleteBus_negative() {
+        final boolean actual = target.deleteBus("");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
     void deleteBus() {
+        final boolean actual = target.deleteBus(bus.getId());
+        Assertions.assertTrue(actual);
     }
 }

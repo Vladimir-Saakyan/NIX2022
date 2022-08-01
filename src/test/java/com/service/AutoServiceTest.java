@@ -6,6 +6,7 @@ import com.repository.AutoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
@@ -59,6 +60,10 @@ class AutoServiceTest {
 
     @Test
     void update() {
+        final Auto auto = createSimpleAuto();
+        auto.setPrice(BigDecimal.ONE);
+        //TODO Auto update Mockito
+
     }
 
     @Test

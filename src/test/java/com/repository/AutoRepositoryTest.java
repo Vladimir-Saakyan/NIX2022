@@ -114,6 +114,14 @@ class AutoRepositoryTest {
     }
 
     @Test
-    void deleteCar() {
+    void deleteCar_negative() {
+        final boolean actual = target.deleteCar("1");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    void deleteCar(){
+        final   boolean actual = target.deleteCar(auto.getId());
+        Assertions.assertTrue(actual);
     }
 }
