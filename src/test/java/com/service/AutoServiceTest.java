@@ -6,7 +6,6 @@ import com.repository.AutoRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
@@ -41,7 +40,11 @@ class AutoServiceTest {
     }
 
     @Test
-    void saveAutos() {
+    void argMatch() {
+        final Auto auto = createSimpleAuto();
+        final boolean actual = autoRepository.updateCar(auto);
+        Assertions.assertFalse(actual);
+        Mockito.verify(autoRepository,Mockito.times(1)).updateCar(Mockito.any());
     }
 
     @Test
@@ -59,19 +62,37 @@ class AutoServiceTest {
     }
 
     @Test
-    void update() {
+    void update_notFound(){
         final Auto auto = createSimpleAuto();
-        auto.setPrice(BigDecimal.ONE);
-        //TODO Auto update Mockito
-
+        final boolean actual = autoRepository.updateCar(auto);
+        Assertions.assertFalse(actual);
+        Mockito.when(autoRepository.updateCar(auto)).thenReturn(actual);
+        target.update(auto);
     }
 
     @Test
-    void delete() {
+    void update_verification(){
+        final Auto auto = createSimpleAuto();
+        auto.setPrice(BigDecimal.ONE);
+        final boolean actual = autoRepository.updateCar(auto);
+        Assertions.assertTrue(actual);
+        Mockito.verify(auto).getId();
+    }
+
+    @Test
+    void delete_false() {
+        final boolean actual = autoRepository.deleteCar("qwe");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    void delete(){
+        final Auto auto = createSimpleAuto();
+        final boolean actual = autoRepository.deleteCar(auto.getId());
+        Assertions.assertTrue(actual);
     }
 
     private Auto createSimpleAuto(){
         return new Auto("7", Manufacturer.BMW, BigDecimal.ZERO,"sedan");
     }
-
 }

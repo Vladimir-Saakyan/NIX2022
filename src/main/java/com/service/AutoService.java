@@ -60,9 +60,9 @@ public class AutoService {
             return autoRepository.getByIdCar(id);
         }
     }
-    public void update(Auto auto) {
+    public Auto update(Auto auto) {
         autoRepository.updateCar(auto);
-
+        return auto;
     }
 
     public void delete(String id){

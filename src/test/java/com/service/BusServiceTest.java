@@ -1,5 +1,6 @@
 package com.service;
 
+import com.model.Auto;
 import com.model.Bus;
 import com.model.Manufacturer;
 import com.repository.BusRepiository;
@@ -45,10 +46,6 @@ class BusServiceTest {
     }
 
     @Test
-    void saveBuses() {
-    }
-
-    @Test
     void printAllBus() {
         List<Bus> buses = List.of(createSimpleBus(), createSimpleBus());
         Mockito.when(busRepiository.getAllBus()).thenReturn(buses);
@@ -64,11 +61,34 @@ class BusServiceTest {
     }
 
     @Test
-    void updateBus() {
+    void update_notFound(){
+        final Bus bus = createSimpleBus();
+        final boolean actual = busRepiository.updateBus(bus);
+        Assertions.assertFalse(actual);
+        Mockito.when(busRepiository.updateBus(bus)).thenReturn(actual);
+        target.updateBus(bus);
     }
 
     @Test
-    void deleteBus() {
+    void update_verification(){
+        final Bus bus = createSimpleBus();
+        bus.setPrice(BigDecimal.ONE);
+        final boolean actual = busRepiository.updateBus(bus);
+        Assertions.assertTrue(actual);
+        Mockito.verify(bus).getId();
+    }
+
+    @Test
+    void delete_false() {
+        final boolean actual = busRepiository.deleteBus("qwe");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    void delete(){
+        final Bus bus = createSimpleBus();
+        final boolean actual = busRepiository.deleteBus(bus.getId());
+        Assertions.assertTrue(actual);
     }
 
     private Bus createSimpleBus(){

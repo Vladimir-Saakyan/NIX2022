@@ -1,5 +1,6 @@
 package com.service;
 
+import com.model.Auto;
 import com.model.Manufacturer;
 import com.model.Moto;
 import com.repository.MotoRepository;
@@ -41,10 +42,6 @@ class MotoServiceTest {
     }
 
     @Test
-    void saveMoto() {
-    }
-
-    @Test
     void printAllMotos() {
         List<Moto> motos = List.of(createSimpleMoto(), createSimpleMoto());
         Mockito.when(motoRepository.getAllMoto()).thenReturn(motos);
@@ -59,11 +56,34 @@ class MotoServiceTest {
     }
 
     @Test
-    void updateMoto() {
+    void update_notFound(){
+        final Moto moto = createSimpleMoto();
+        final boolean actual = motoRepository.updateMoto(moto);
+        Assertions.assertFalse(actual);
+        Mockito.when(motoRepository.updateMoto(moto)).thenReturn(actual);
+        target.updateMoto(moto);
     }
 
     @Test
-    void deleteMoto() {
+    void update_verification(){
+        final Moto moto = createSimpleMoto();
+        moto.setPrice(BigDecimal.ONE);
+        final boolean actual = motoRepository.updateMoto(moto);
+        Assertions.assertTrue(actual);
+        Mockito.verify(moto).getId();
+    }
+
+    @Test
+    void delete_false() {
+        final boolean actual = motoRepository.deleteMoto("qwe");
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    void delete(){
+        final Moto moto = createSimpleMoto();
+        final boolean actual = motoRepository.deleteMoto(moto.getId());
+        Assertions.assertTrue(actual);
     }
 
     private Moto createSimpleMoto(){
