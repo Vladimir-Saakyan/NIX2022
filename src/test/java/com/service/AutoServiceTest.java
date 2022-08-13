@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 class AutoServiceTest {
     private AutoService target;
@@ -92,7 +93,12 @@ class AutoServiceTest {
         Assertions.assertTrue(actual);
     }
 
+    @Test
+    void findOneById(){
+
+    }
+
     private Auto createSimpleAuto(){
-        return new Auto("7", Manufacturer.BMW, BigDecimal.ZERO,"sedan");
+        return new Auto("7", Manufacturer.BMW, BigDecimal.ONE,"sedan");
     }
 }

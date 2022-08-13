@@ -10,12 +10,12 @@ import com.model.Bus;
 import com.service.BusService;
 import com.service.MotoService;
 import java.util.List;
+import java.util.Optional;
 
 public class Main {
     private static final AutoService AUTO_SERVICE = new AutoService(new AutoRepository());
     private static final BusService BUS_SERVICE = new BusService(new BusRepiository());
     private static final MotoService MOTO_SERVICE = new MotoService(new MotoRepository());
-
     public static void main(String[] args) {
 
         System.out.println("                                                                 ===AUTO===");
@@ -50,5 +50,13 @@ public class Main {
         MOTO_SERVICE.deleteMoto(moto.getId());
         System.out.println("- - - - - - -  after remove moto  - - - - - - - - ");
         MOTO_SERVICE.printAllMotos();
+
+        System.out.println("- - - - - - -  hw12  - - - - - - - - ");
+        AUTO_SERVICE.findOneById(auto.getId());
+        AUTO_SERVICE.findPriceForId(auto.getId());
+        AUTO_SERVICE.findAuto(auto.getId());
+        AUTO_SERVICE.findManufactureById(auto.getId());
+//        AUTO_SERVICE.findMethod(auto.getId());
+        AUTO_SERVICE.findAllPrice(auto.getId());
     }
 }

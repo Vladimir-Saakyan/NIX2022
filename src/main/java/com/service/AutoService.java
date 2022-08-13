@@ -9,7 +9,11 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import java.util.function.Supplier;
+
+import static com.model.Manufacturer.KIA;
 
 public class AutoService {
 
@@ -17,7 +21,8 @@ public class AutoService {
     private static final Random RANDOM = new Random();
     private final AutoRepository autoRepository;
 
-    public AutoService(AutoRepository autoRepository){
+
+    public AutoService(AutoRepository autoRepository) {
         this.autoRepository = autoRepository;
     }
 
@@ -53,21 +58,75 @@ public class AutoService {
         }
     }
 
-    public Auto findOneById(String id) {
-        if(id == null) {
-            return autoRepository.getByIdCar("");
-        }else {
-            return autoRepository.getByIdCar(id);
-        }
+    public Optional<Auto> findOneById(String id) {
+        Optional.of(autoRepository.getByIdCar(id)).ifPresent(auto -> auto.getId());
+        System.out.println(id);
+        return Optional.empty();
     }
+
+    public Optional<Auto> findAllPrice(String id){
+        Auto result = Optional.of(autoRepository.getPrice(id)).map(auto->autoRepository.getByIdCar(id))
+                .orElseThrow(()->new IllegalArgumentException("cannot find"));
+        return Optional.ofNullable(result);
+    }
+
     public Auto update(Auto auto) {
         autoRepository.updateCar(auto);
         return auto;
     }
 
-    public void delete(String id){
+    public void delete(String id) {
         autoRepository.deleteCar(id);
         System.out.println(id);
     }
 
+//    public void filterPrice(String id){
+//        List<Auto> result = Optional.of(autoRepository.getPrice(id))
+//                .filter(values -> autoRepository.getPrice(id) > 0)
+//                .orElseThrow(new IllegalArgumentException("invalid price"));
+//    }
+    public Optional<Auto> findAutos(String id){
+        Optional.of(autoRepository.getByIdCar(id))
+                .ifPresentOrElse(auto -> auto.getId()
+                ,(() -> System.out.println("auto is empty")));
+        return Optional.empty();
+    }
+
+    public Optional<Auto> findPriceForId(String id) {
+        Optional.of(autoRepository.getPrice(id)).orElse(BigDecimal.ONE);
+        System.out.println(autoRepository.getPrice(id));
+        return Optional.ofNullable(null);
+    }
+
+    public Optional<Auto> findAuto(String id) {
+        Optional.of(autoRepository.getByIdCar(id)).orElseGet(() ->
+                new Auto("qwerty",
+                        KIA,
+                        BigDecimal.ZERO,
+                        "qwerty"));
+        System.out.println(autoRepository.getByIdCar(id));
+        return Optional.empty();
+    }
+
+    public void findManufactureById(String id) {
+        try {
+            Optional.of(autoRepository.getManufactureById(id)).
+                    orElseThrow(() -> new IllegalArgumentException("Cannot find auto" + id));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+//    public void findMethod(String id) {
+//        final Optional<Auto> met = autoRepository.getManufactureById(id).or(()->Optional.of(defaultAuto()));
+//        met.ifPresent(auto -> System.out.println(auto.getModel()));
+//    }
+
+
+    private Auto defaultAuto(){
+        return new Auto(
+                "qwerty",
+                getRandomManufacturer(),
+                BigDecimal.ZERO,
+                "model - " + RANDOM.nextLong(100)) ;
+    }
 }

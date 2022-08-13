@@ -1,6 +1,7 @@
 package com.repository;
 
 import com.model.Auto;
+import com.model.Manufacturer;
 import com.service.AutoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class AutoRepository implements CrudRepositoryAuto {
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoService.class);
@@ -17,6 +19,7 @@ public class AutoRepository implements CrudRepositoryAuto {
     public AutoRepository() {
         autos = new LinkedList<>();
     }
+
 
     @Override
     public Auto getByIdCar(String id) {
@@ -42,6 +45,13 @@ public class AutoRepository implements CrudRepositoryAuto {
             auto.setPrice(BigDecimal.valueOf(-1));
         }
         return  autos.add(auto);
+    }
+    public Auto getcreateDefaultCar(){
+        final Auto auto = new Auto("qwerty",
+                Manufacturer.KIA,
+                BigDecimal.ZERO,
+                "qwerty");
+        return auto;
     }
 
     @Override
@@ -77,6 +87,23 @@ public class AutoRepository implements CrudRepositoryAuto {
             }
         }
         return false;
+    }
+
+    public BigDecimal getPrice(String id){
+        final Iterator<Auto> result = autos.iterator();
+        while (result.hasNext()) {
+            final Auto auto = result.next();
+            if (auto.getId().equals(id)) {
+                return auto.getPrice();
+            }
+        }
+        return null;
+    }
+
+    public Auto getManufactureById(String id) {
+        final Auto result = getByIdCar(id);
+        System.out.println(result.getManufacturer());
+        return result;
     }
 
     private static class AutoCopy {
