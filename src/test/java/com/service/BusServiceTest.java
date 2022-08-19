@@ -42,20 +42,20 @@ class BusServiceTest {
     void createBuses() {
         final List<Bus> actual=target.createBuses(3); ;
         Assertions.assertEquals(3, actual.size());
-        Mockito.verify(busRepiository, Mockito.times(3)).createBus(Mockito.any());
+        Mockito.verify(busRepiository, Mockito.times(3)).createCar(Mockito.any());
     }
 
     @Test
     void printAllBus() {
         List<Bus> buses = List.of(createSimpleBus(), createSimpleBus());
-        Mockito.when(busRepiository.getAllBus()).thenReturn(buses);
+        Mockito.when(busRepiository.getAllCar()).thenReturn(buses);
         target.printAllBus();
     }
 
     @Test
     void findOneById_null() {
         final Bus expected = createSimpleBus();
-        Mockito.when(busRepiository.getByIdBus("")).thenReturn(expected);
+        Mockito.when(busRepiository.getByIdCar("")).thenReturn(expected);
         final Bus actual = target.findOneById(null);
         Assertions.assertEquals(expected.getId(), actual.getId());
     }
@@ -63,9 +63,9 @@ class BusServiceTest {
     @Test
     void update_notFound(){
         final Bus bus = createSimpleBus();
-        final boolean actual = busRepiository.updateBus(bus);
+        final boolean actual = busRepiository.updateCar(bus);
         Assertions.assertFalse(actual);
-        Mockito.when(busRepiository.updateBus(bus)).thenReturn(actual);
+        Mockito.when(busRepiository.updateCar(bus)).thenReturn(actual);
         target.updateBus(bus);
     }
 
@@ -73,21 +73,21 @@ class BusServiceTest {
     void update_verification(){
         final Bus bus = createSimpleBus();
         bus.setPrice(BigDecimal.ONE);
-        final boolean actual = busRepiository.updateBus(bus);
+        final boolean actual = busRepiository.updateCar(bus);
         Assertions.assertTrue(actual);
         Mockito.verify(bus).getId();
     }
 
     @Test
     void delete_false() {
-        final boolean actual = busRepiository.deleteBus("qwe");
+        final boolean actual = busRepiository.deleteCar("qwe");
         Assertions.assertFalse(actual);
     }
 
     @Test
     void delete(){
         final Bus bus = createSimpleBus();
-        final boolean actual = busRepiository.deleteBus(bus.getId());
+        final boolean actual = busRepiository.deleteCar(bus.getId());
         Assertions.assertTrue(actual);
     }
 

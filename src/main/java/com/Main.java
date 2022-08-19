@@ -1,6 +1,7 @@
 package com;
 
 import com.model.Auto;
+import com.model.Manufacturer;
 import com.model.Moto;
 import com.repository.AutoRepository;
 import com.repository.BusRepiository;
@@ -9,6 +10,8 @@ import com.service.AutoService;
 import com.model.Bus;
 import com.service.BusService;
 import com.service.MotoService;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +61,10 @@ public class Main {
         AUTO_SERVICE.findManufactureById(auto.getId());
 //        AUTO_SERVICE.findMethod(auto.getId());
         AUTO_SERVICE.findAllPrice(auto.getId());
+
+        System.out.println("- - - - - - -  hw13  - - - - - - - - ");
+
+        System.out.println("- - - - - - -  hw21  - - - - - - - - ");
+
     }
 }

@@ -30,7 +30,7 @@ public class BusService {
                     "Model Bus-" + RANDOM.nextInt(1000)
             );
             result.add(bus);
-            busRepository.createBus(bus);
+            busRepository.createCar(bus);
             LOGGER.debug("Created bus {}", bus.getId());
         }
         return result;
@@ -43,29 +43,29 @@ public class BusService {
     }
 
     public void saveBuses(List<Bus> buses) {
-        busRepository.createAllBus(buses);
+        busRepository.createAllCar(buses);
     }
 
     public void printAllBus() {
-        for (Bus bus : busRepository.getAllBus()) {
+        for (Bus bus : busRepository.getAllCar()) {
             System.out.println(bus);
         }
     }
 
     public Bus findOneById(String id) {
         if(id == null) {
-           return busRepository.getByIdBus("");
+           return busRepository.getByIdCar("");
         } else  {
-           return busRepository.getByIdBus(id);
+           return busRepository.getByIdCar(id);
         }
     }
 
     public void updateBus(Bus bus) {
-        busRepository.updateBus(bus);
+        busRepository.updateCar(bus);
          }
 
     public void deleteBus(String id){
-        busRepository.deleteBus(id);
+        busRepository.deleteCar(id);
 
     }
 }

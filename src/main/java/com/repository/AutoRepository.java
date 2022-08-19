@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class AutoRepository implements CrudRepositoryAuto {
+public class AutoRepository implements CrudRepo<Auto> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoService.class);
     private final List<Auto> autos;
 

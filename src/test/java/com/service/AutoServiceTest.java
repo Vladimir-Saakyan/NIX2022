@@ -91,13 +91,7 @@ class AutoServiceTest {
         final Auto auto = createSimpleAuto();
         final boolean actual = autoRepository.deleteCar(auto.getId());
         Assertions.assertTrue(actual);
-    }
-
-    @Test
-    void findOneById(){
-
-    }
-
+    } 
     private Auto createSimpleAuto(){
         return new Auto("7", Manufacturer.BMW, BigDecimal.ONE,"sedan");
     }

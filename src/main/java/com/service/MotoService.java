@@ -31,7 +31,7 @@ public class MotoService {
                    "Model MOto-" + RANDOM.nextInt(1000)
            );
            result.add(moto);
-           motoRepository.createMoto(moto);
+           motoRepository.createCar(moto);
            LOGGER.debug("Created moto {}", moto.getId());
 
        } return result;
@@ -45,28 +45,28 @@ public class MotoService {
     }
 
     public void saveMoto(List<Moto> motos){
-        motoRepository.createAllMoto(motos);
+        motoRepository.createAllCar(motos);
     }
 
     public void printAllMotos(){
-        for (Moto moto : motoRepository.getAllMoto()){
+        for (Moto moto : motoRepository.getAllCar()){
             System.out.println(moto);
         }
     }
 
     public Moto findOneById(String id){
         if(id == null){
-           return motoRepository.getByIdMoto("");
+           return motoRepository.getByIdCar("");
         } else {
-           return motoRepository.getByIdMoto(id);
+           return motoRepository.getByIdCar(id);
         }
     }
 
     public void updateMoto(Moto moto) {
-        motoRepository.updateMoto(moto);
+        motoRepository.updateCar(moto);
     }
 
     public void deleteMoto(String id){
-        motoRepository.deleteMoto(id);    }
+        motoRepository.deleteCar(id);    }
 
 }
