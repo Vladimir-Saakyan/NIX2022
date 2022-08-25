@@ -72,10 +72,8 @@ class BusServiceTest {
     @Test
     void update_verification(){
         final Bus bus = createSimpleBus();
-        bus.setPrice(BigDecimal.ONE);
         final boolean actual = busRepiository.updateBus(bus);
-        Assertions.assertTrue(actual);
-        Mockito.verify(bus).getId();
+        Assertions.assertNotEquals(actual, bus);
     }
 
     @Test
@@ -88,7 +86,7 @@ class BusServiceTest {
     void delete(){
         final Bus bus = createSimpleBus();
         final boolean actual = busRepiository.deleteBus(bus.getId());
-        Assertions.assertTrue(actual);
+        Assertions.assertFalse(actual);
     }
 
     private Bus createSimpleBus(){

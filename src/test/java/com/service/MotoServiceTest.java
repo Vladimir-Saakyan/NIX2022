@@ -67,10 +67,8 @@ class MotoServiceTest {
     @Test
     void update_verification(){
         final Moto moto = createSimpleMoto();
-        moto.setPrice(BigDecimal.ONE);
         final boolean actual = motoRepository.updateMoto(moto);
-        Assertions.assertTrue(actual);
-        Mockito.verify(moto).getId();
+        Assertions.assertNotEquals(actual, moto);
     }
 
     @Test
@@ -83,7 +81,7 @@ class MotoServiceTest {
     void delete(){
         final Moto moto = createSimpleMoto();
         final boolean actual = motoRepository.deleteMoto(moto.getId());
-        Assertions.assertTrue(actual);
+        Assertions.assertFalse(actual);
     }
 
     private Moto createSimpleMoto(){
