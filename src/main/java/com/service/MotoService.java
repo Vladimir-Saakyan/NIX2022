@@ -2,6 +2,8 @@ package com.service;
 
 import com.model.Manufacturer;
 import com.model.Moto;
+import com.model.Vehicle;
+import com.repository.CrudRepo;
 import com.repository.MotoRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -12,61 +14,25 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class MotoService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(BusService.class);
+public class MotoService extends Service {
 
-    private final static Random RANDOM = new Random();
-    private final MotoRepository motoRepository;
 
-    public MotoService(MotoRepository motoRepository) {
-        this.motoRepository = motoRepository;
+    public MotoService(CrudRepo<Moto> repository) {
+       super(repository);
     }
-    public List<Moto> createMoto(int count){
-        List<Moto> result = new LinkedList<>();
-       for(int i = 0; i < count; i++){
-           final Moto moto = new Moto(
-                   "Model Moto -" + RANDOM.nextInt(1000),
-                   getRandomManufacturer(),
-                   BigDecimal.valueOf(RANDOM.nextDouble(1000.0)),
-                   "Model MOto-" + RANDOM.nextInt(1000)
-           );
-           result.add(moto);
-           motoRepository.createCar(moto);
-           LOGGER.debug("Created moto {}", moto.getId());
 
-       } return result;
-
-
+    @Override
+    protected Vehicle create() {
+        return new Moto(
+                "Model Moto -" + RANDOM.nextInt(1000),
+                getRandomManufacturer(),
+                BigDecimal.valueOf(RANDOM.nextDouble(1000.0)),
+                "Model MOto-" + RANDOM.nextInt(1000)
+        );
     }
     private Manufacturer getRandomManufacturer() {
         final Manufacturer[] values = Manufacturer.values();
         final int index = RANDOM.nextInt(values.length);
         return values[index];
     }
-
-    public void saveMoto(List<Moto> motos){
-        motoRepository.createAllCar(motos);
-    }
-
-    public void printAllMotos(){
-        for (Moto moto : motoRepository.getAllCar()){
-            System.out.println(moto);
-        }
-    }
-
-    public Moto findOneById(String id){
-        if(id == null){
-           return motoRepository.getByIdCar("");
-        } else {
-           return motoRepository.getByIdCar(id);
-        }
-    }
-
-    public void updateMoto(Moto moto) {
-        motoRepository.updateCar(moto);
-    }
-
-    public void deleteMoto(String id){
-        motoRepository.deleteCar(id);    }
-
 }
