@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BusRepiository implements CrudRepositoryBus {
+public class BusRepiository implements CrudRepo<Bus> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoService.class);
 
     private final List<Bus> buses;
@@ -20,7 +20,7 @@ public class BusRepiository implements CrudRepositoryBus {
     }
 
     @Override
-    public Bus getByIdBus(String id) {
+    public Bus getByIdCar(String id) {
         for(Bus bus: buses){
             if(bus.getId().equals(id)){
                 return bus;
@@ -30,12 +30,12 @@ public class BusRepiository implements CrudRepositoryBus {
     }
 
     @Override
-    public List<Bus> getAllBus() {
+    public List<Bus> getAllCar() {
         return buses;
     }
 
     @Override
-    public boolean createBus(Bus bus) {
+    public boolean createCar(Bus bus) {
         if(bus == null){
             throw  new IllegalArgumentException("Invalid bus");
         }
@@ -47,7 +47,7 @@ public class BusRepiository implements CrudRepositoryBus {
     }
 
     @Override
-    public boolean createAllBus(List<Bus> bus) {
+    public boolean createAllCar(List<Bus> bus) {
         if(bus == null){
             return false;
         }
@@ -55,8 +55,8 @@ public class BusRepiository implements CrudRepositoryBus {
     }
 
     @Override
-    public boolean updateBus(Bus bus) {
-        final Bus founded = getByIdBus(bus.getId());
+    public boolean updateCar(Bus bus) {
+        final Bus founded = getByIdCar(bus.getId());
         if (founded != null) {
             BusCopy.copy(bus, founded);
 
@@ -67,7 +67,7 @@ public class BusRepiository implements CrudRepositoryBus {
     }
 
     @Override
-    public boolean deleteBus(String id) {
+    public boolean deleteCar(String id) {
         final Iterator<Bus> iterator = buses.iterator();
         while (iterator.hasNext()) {
             final Bus bus = iterator.next();
