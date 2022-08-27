@@ -57,14 +57,18 @@ public class Container {
         }
     }
 
-    public void discount() {
-        final List<? extends Vehicle> vehicleList = creareAndSave();
-        BigDecimal newPrice;
-        for (Vehicle el : vehicleList) {
-            BigDecimal discount = BigDecimal.valueOf(0.1 + Math.random() + 0.3);
-            System.out.println("your discount - " + discount);
-            newPrice = el.getPrice().multiply(discount);
-            System.out.println("for id - " + el.getId() + " discount:" + discount + ", that`s why price for your auto - " + newPrice);
+    public BigDecimal discount() {
+        BigDecimal count = BigDecimal.valueOf(0.1 + Math.random() + 0.3);
+        return count;
+    }
+
+    public void dPrice(){
+        discount();
+        Number pr = null;
+        final List<? extends Vehicle> cars = creareAndSave();
+        for (Vehicle el : cars){
+            pr = el.getPrice().multiply(discount());
+            System.out.println("for car - " + el.getId() +" discount price - " + pr);
         }
     }
 }
