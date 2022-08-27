@@ -1,6 +1,6 @@
-package com.hw10.repository;
+package com.repository;
 
-import com.hw10.model.Bus;
+import com.model.Bus;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface CrudRepositoryBus {
 
     boolean createBus(Bus bus);
 
-    boolean createBus(List<Bus> bus);
+    boolean createAllBus(List<Bus> bus);
 
     boolean updateBus(Bus bus);
 

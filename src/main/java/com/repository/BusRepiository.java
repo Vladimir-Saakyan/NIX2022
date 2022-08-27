@@ -1,10 +1,11 @@
-package com.hw10.repository;
+package com.repository;
 
-import com.hw10.model.Bus;
-import com.hw10.service.AutoService;
+import com.model.Bus;
+import com.service.AutoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,12 +36,21 @@ public class BusRepiository implements CrudRepositoryBus {
 
     @Override
     public boolean createBus(Bus bus) {
+        if(bus == null){
+            throw  new IllegalArgumentException("Invalid bus");
+        }
+        if(bus.getPrice().equals(BigDecimal.ZERO)){
+            bus.setPrice(BigDecimal.valueOf(-1));
+        }
         buses.add(bus);
         return true;
     }
 
     @Override
-    public boolean createBus(List<Bus> bus) {
+    public boolean createAllBus(List<Bus> bus) {
+        if(bus == null){
+            return false;
+        }
         return buses.addAll(bus);
     }
 
@@ -72,7 +82,7 @@ public class BusRepiository implements CrudRepositoryBus {
     }
     private static class BusCopy {
         static void copy(final Bus from, final Bus to) {
-            to.setManufacturer(from.getManufacturer());
+
             to.setModel(from.getModel());
             to.setBodytype(from.getBodytype());
             to.setPrice(from.getPrice());

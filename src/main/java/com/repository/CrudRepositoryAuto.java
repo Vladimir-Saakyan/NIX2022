@@ -1,10 +1,9 @@
-package com.hw10.repository;
+package com.repository;
 
-import com.hw10.model.Auto;
-import com.hw10.model.Bus;
-import com.hw10.model.Moto;
+import com.model.Auto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CrudRepositoryAuto {
 
@@ -14,7 +13,7 @@ public interface CrudRepositoryAuto {
 
     boolean createCar(Auto auto);
 
-    boolean createCar(List<Auto> auto);
+    boolean createAllCar(List<Auto> auto);
 
     boolean updateCar(Auto auto);
 

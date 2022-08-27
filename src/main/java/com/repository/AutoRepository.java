@@ -1,13 +1,16 @@
-package com.hw10.repository;
+package com.repository;
 
-import com.hw10.model.Auto;
-import com.hw10.service.AutoService;
+import com.model.Auto;
+import com.model.Manufacturer;
+import com.service.AutoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class AutoRepository implements CrudRepositoryAuto {
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoService.class);
@@ -16,6 +19,7 @@ public class AutoRepository implements CrudRepositoryAuto {
     public AutoRepository() {
         autos = new LinkedList<>();
     }
+
 
     @Override
     public Auto getByIdCar(String id) {
@@ -34,12 +38,27 @@ public class AutoRepository implements CrudRepositoryAuto {
 
     @Override
     public boolean createCar(Auto auto) {
-        autos.add(auto);
-        return true;
+        if(auto == null) {
+            throw new IllegalArgumentException("Invalid auto");
+        }
+        if(auto.getPrice().equals(BigDecimal.ZERO)){
+            auto.setPrice(BigDecimal.valueOf(-1));
+        }
+        return  autos.add(auto);
+    }
+    public Auto getcreateDefaultCar(){
+        final Auto auto = new Auto("qwerty",
+                Manufacturer.KIA,
+                BigDecimal.ZERO,
+                "qwerty");
+        return auto;
     }
 
     @Override
-    public boolean createCar(List<Auto> auto) {
+    public boolean createAllCar(List<Auto> auto) {
+        if(auto == null) {
+            return false;
+        }
         return autos.addAll(auto);
     }
 
@@ -70,9 +89,25 @@ public class AutoRepository implements CrudRepositoryAuto {
         return false;
     }
 
+    public BigDecimal getPrice(String id){
+        final Iterator<Auto> result = autos.iterator();
+        while (result.hasNext()) {
+            final Auto auto = result.next();
+            if (auto.getId().equals(id)) {
+                return auto.getPrice();
+            }
+        }
+        return null;
+    }
+
+    public Auto getManufactureById(String id) {
+        final Auto result = getByIdCar(id);
+        System.out.println(result.getManufacturer());
+        return result;
+    }
+
     private static class AutoCopy {
         static void copy(final Auto from, final Auto to) {
-            to.setManufacturer(from.getManufacturer());
             to.setModel(from.getModel());
             to.setBodyType(from.getBodyType());
             to.setPrice(from.getPrice());
