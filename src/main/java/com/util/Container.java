@@ -1,4 +1,4 @@
-package com.service;
+package com.util;
 
 import com.model.Auto;
 import com.model.Bus;
@@ -9,6 +9,9 @@ import com.repository.BusRepiository;
 import com.repository.MotoRepository;
 import lombok.Getter;
 import lombok.Setter;
+import com.service.AutoService;
+import com.service.BusService;
+import com.service.MotoService;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
