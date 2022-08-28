@@ -1,18 +1,11 @@
 package com.service;
 
-import com.model.Manufacturer;
-import com.model.Moto;
-import com.model.Vehicle;
+import com.model.vehicle.Manufacturer;
+import com.model.vehicle.Moto;
+import com.model.vehicle.Vehicle;
 import com.repository.CrudRepo;
-import com.repository.MotoRepository;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 
 public class MotoService extends Service {
 

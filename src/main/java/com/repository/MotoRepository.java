@@ -1,8 +1,6 @@
 package com.repository;
 
-import com.model.Bus;
-import com.model.Moto;
-import com.service.AutoService;
+import com.model.vehicle.Moto;
 import com.service.MotoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

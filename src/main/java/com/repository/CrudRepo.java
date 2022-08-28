@@ -1,8 +1,6 @@
 package com.repository;
 
-import com.model.Auto;
-import com.model.Bus;
-import com.model.Vehicle;
+import com.model.vehicle.Vehicle;
 
 import java.util.List;
 

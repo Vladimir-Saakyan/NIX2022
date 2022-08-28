@@ -1,20 +1,10 @@
 package com.service;
 
-import com.model.Auto;
-import com.model.Manufacturer;
-import com.repository.AutoRepository;
+import com.model.vehicle.Auto;
+import com.model.vehicle.Manufacturer;
 import com.repository.CrudRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.function.Supplier;
-
-import static com.model.Manufacturer.KIA;
 
 public class AutoService extends Service<Auto> {
 

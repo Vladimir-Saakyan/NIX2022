@@ -1,9 +1,9 @@
 package com.util;
 
-import com.model.Auto;
-import com.model.Bus;
-import com.model.Moto;
-import com.model.Vehicle;
+import com.model.vehicle.Auto;
+import com.model.vehicle.Bus;
+import com.model.vehicle.Moto;
+import com.model.vehicle.Vehicle;
 import com.repository.AutoRepository;
 import com.repository.BusRepiository;
 import com.repository.MotoRepository;

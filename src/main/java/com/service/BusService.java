@@ -1,16 +1,10 @@
 package com.service;
 
-import com.model.Bus;
-import com.model.Manufacturer;
-import com.repository.BusRepiository;
+import com.model.vehicle.Bus;
+import com.model.vehicle.Manufacturer;
 import com.repository.CrudRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
 
 public class BusService extends Service<Bus> {
 
