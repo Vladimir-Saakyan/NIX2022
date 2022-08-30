@@ -1,21 +1,25 @@
 package com.util;
 
 import com.model.vehicle.Vehicle;
+import lombok.Getter;
 
-import java.sql.Time;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
-public class Garage<T extends Vehicle> implements LinkList<T> {
-    private int size=0;
+public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
+    private int size =0;
+    private String date;
 
     private Node<T> first;
     private Node<T> last;
+
 
     public static <T extends Vehicle> LinkList<T> of(T... el){
         Garage<T> linkedListGarage = new Garage<>();
         for (T e : el){
             linkedListGarage.add(e);
+
         }
         return linkedListGarage;
     }
@@ -38,16 +42,37 @@ public class Garage<T extends Vehicle> implements LinkList<T> {
     }
 
     @Override
-    public void set(int index, T el){
+    public T set(T el){
+        size++;
+        Node<T> node = new Node<>(el);
+        last = node;
+        return last.el;
+    }
+
+    @Override
+    public T set(int index, T el){
         Objects.checkIndex(index, size);
         Node<T> node = getNodeByIndex(index);
+        T oldVal = node.el;
         node.el = el;
+        return oldVal;
     }
 
     @Override
     public T get(int index){
         Objects.checkIndex(index, size);
         return getNodeByIndex(index).el;
+    }
+
+    @Override
+    public boolean findOfNumber(int number) {
+        for (int i = 0; i < size; i++) {
+            int find = get(i).getNumberRest();
+            if (find == number) {
+                System.out.println("your car for that number - " + get(i));
+            } throw new IllegalArgumentException("number is not " + number);
+        }
+        return false;
     }
 
     @Override
@@ -63,29 +88,20 @@ public class Garage<T extends Vehicle> implements LinkList<T> {
         if(isEmpty()){
             throw new NoSuchElementException();
         }
-        return get(size-1);
+        return get(size -1);
     }
 
     @Override
-    public T remove(int index){
-        Objects.checkIndex(index, size);
-        T removeElevent;
-        if(index == 0){
-            removeElevent = first.el;
-            first = first.next;
-            if(first == null){
-                last = null;
-            }
-        } else {
-            Node<T> prev = getNodeByIndex(index - 1);
-            removeElevent = prev.el;
-            prev.next = prev.next.next;
-            if(index == size-1){
-                last = prev;
-            }
+    public boolean remove(int numberofRest){
+
+        for (int i = 0; i<size; i++){
+            if(numberofRest == get(i).getNumberRest()){
+                Node<T> prev = getNodeByIndex(i-1);
+                prev.next=prev.next.next;
+                size--;
+            }else System.out.println(numberofRest + "no this car");
         }
-        size--;
-        return removeElevent;
+        return false;
     }
 
     @Override
@@ -97,6 +113,11 @@ public class Garage<T extends Vehicle> implements LinkList<T> {
             }
         }
         return false;
+    }
+
+    @Override
+    public String getDate(int index){
+        return getDate(index);
     }
 
     @Override
@@ -116,16 +137,50 @@ public class Garage<T extends Vehicle> implements LinkList<T> {
     }
 
 
+
+    @Getter
     static class Node<T> {
         T el;
-        private final Time data;
-        private final  int restailing;
         Node<T> next;
 
-        public Node(T el, Time data, int restailing){
+        public Node(T el){
             this.el = el;
-            this.data= data;
-            this.restailing =restailing;
+        }
+
+        public static <T> void link(Node<T> first, Node<T> second){
+            first.next = second;
+
         }
     }
+
+    public Iterator<T> iterator() {
+        return new MyLinkedListIterator();
+    }
+
+    private class MyLinkedListIterator implements Iterator<T> {
+
+        private Node<T> curr;
+
+        public MyLinkedListIterator() {
+            this.curr = first;
+        }
+
+        public boolean hasNext() {
+            return this.curr != null;
+        }
+
+        public T next() {
+            if (!this.hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T value = curr.el;
+            curr = curr.next;
+            return value;
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
+
 }

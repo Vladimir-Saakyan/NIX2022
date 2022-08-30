@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 public class Bus extends Vehicle {
     private String bodytype;
 
-    public Bus(String model, Manufacturer manufacturer, BigDecimal price, String bodytype) {
-        super(model, manufacturer, price);
+    public Bus(String model, Manufacturer manufacturer, BigDecimal price, String bodytype, int number, String date) {
+        super(model, manufacturer, price, number, date);
         this.bodytype = bodytype;
     }
 
@@ -24,6 +24,8 @@ public class Bus extends Vehicle {
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", manufacturer=" + manufacturer +
+                ", restailing num - " + numberRest+
+                ", date created :" + date+
                 '}';
     }
 }

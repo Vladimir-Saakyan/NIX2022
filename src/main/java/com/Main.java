@@ -1,9 +1,6 @@
 package com;
 
-import com.model.vehicle.Auto;
-import com.model.vehicle.Bus;
-import com.model.vehicle.Moto;
-import com.model.vehicle.Vehicle;
+import com.model.vehicle.*;
 import com.repository.AutoRepository;
 import com.repository.BusRepiository;
 import com.repository.MotoRepository;
@@ -12,8 +9,11 @@ import com.service.BusService;
 import com.service.MotoService;
 import com.util.Container;
 import com.util.Garage;
-import com.util.LinkList;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -38,6 +38,7 @@ public class Main {
         final List<Moto> motos = MOTO_SERVICE.createAndSaveAutos(5);
         for(Auto vehicle: autos){
             vehicleList.add(vehicle);
+            System.out.println("new car: "+ vehicle.getId()+" Time Created: " + vehicle.getDate() );
         }
         System.out.println("add auto, return size of Garage : "+ vehicleList.size());
         for(Bus vehicle: buses){
@@ -48,6 +49,23 @@ public class Main {
             vehicleList.add(vehicle);
         }
         System.out.println("add moto, return size of Garage : "+vehicleList.size());
+
+        vehicleList.add(new Auto("sedan", Manufacturer.KIA, BigDecimal.ONE, "qwerty", 1, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+
+        System.out.println("add new Auto, return size of Garage : "+vehicleList.size() + "\n new Auto - "+vehicleList.get(garage.size()));
+
+//        System.out.println(vehicleList.findOfNumber(1));//TODO dont work
+
+//        System.out.println(vehicleList.remove(1)); //TODO dont work
+
+        for (Vehicle v : vehicleList) {
+            System.out.println(v);
+        }
+        System.out.println("add moto, return size of Garage : "+vehicleList.size());
+
+        for (Vehicle v : vehicleList){
+
+        }
 
     }
 
