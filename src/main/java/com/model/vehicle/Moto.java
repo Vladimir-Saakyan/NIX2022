@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -12,7 +13,7 @@ public class Moto extends Vehicle {
     private String bodyType;
 
     public Moto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, String date) {
-        super(model, manufacturer, price, number,date);
+        super(model, manufacturer, price, number, date);
         this.bodyType = bodyType;
     }
 

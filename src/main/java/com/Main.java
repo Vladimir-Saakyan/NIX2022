@@ -13,7 +13,6 @@ import com.util.Garage;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -25,11 +24,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-
-        System.out.println("- - - - - - -  hw13  - - - - - - - - ");
-        container.prinall();
-        container.discount();
-        container.dPrice();
 
         System.out.println("- - - - - - -  hw14  - - - - - - - - ");
         final Garage<Vehicle> vehicleList = new Garage<>();
@@ -54,18 +48,19 @@ public class Main {
 
         System.out.println("add new Auto, return size of Garage : "+vehicleList.size() + "\n new Auto - "+vehicleList.get(garage.size()));
 
-//        System.out.println(vehicleList.findOfNumber(1));//TODO dont work
-
-//        System.out.println(vehicleList.remove(1)); //TODO dont work
-
-        for (Vehicle v : vehicleList) {
-            System.out.println(v);
+        System.out.println("===-=====" );
+        for(Vehicle vehicle: vehicleList){
+            System.out.println(vehicle);
         }
-        System.out.println("add moto, return size of Garage : "+vehicleList.size());
 
-        for (Vehicle v : vehicleList){
-
+        vehicleList.findByRestNumber(1);
+        vehicleList.removeByNumberOfRestailing(1);
+        System.out.println("===-=====" );
+        for(Vehicle vehicle: vehicleList){
+            System.out.println(vehicle);
         }
+        System.out.println("amount of nubmers: " +vehicleList.amountofRest(2));
+
 
     }
 

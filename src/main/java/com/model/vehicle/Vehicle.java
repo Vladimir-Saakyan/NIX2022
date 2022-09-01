@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
@@ -24,6 +25,6 @@ public abstract class Vehicle {
         this.manufacturer = manufacturer;
         this.price = price;
         this.numberRest= numberRest;
-        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:MM:SS"));
+        this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:MM:SS:NN"));
     }
 }
