@@ -12,7 +12,7 @@ public class Moto extends Vehicle {
     private String bodyType;
 
     public Moto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, String date) {
-        super(model, manufacturer, price, number,date);
+        super(model, manufacturer, price, number,date, VehicleType.MOTO);
         this.bodyType = bodyType;
     }
 

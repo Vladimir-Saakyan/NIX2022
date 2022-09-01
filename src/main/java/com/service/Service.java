@@ -1,5 +1,6 @@
 package com.service;
 
+import com.model.vehicle.Auto;
 import com.model.vehicle.Vehicle;
 import com.repository.CrudRepo;
 import org.slf4j.Logger;
@@ -29,8 +30,8 @@ public abstract class Service<T extends Vehicle> {
         }
         return result;
     }
-    public void saveAutos(List<T> vehicle) {
-        repository.createAllCar(vehicle);
+    public void save(List<Auto> vehicle) {
+        repository.createAllCar((List<T>) vehicle);
     }
 
     public void printAll() {

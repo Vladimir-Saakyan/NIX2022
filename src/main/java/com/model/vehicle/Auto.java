@@ -11,7 +11,7 @@ public class Auto extends Vehicle {
     private String bodyType;
 
     public Auto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, String date) {
-        super(model, manufacturer, price,number, date);
+        super(model, manufacturer, price,number, date, VehicleType.AUTO);
         this.bodyType = bodyType;
     }
 
