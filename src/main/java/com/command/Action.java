@@ -4,7 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum Action {
-    CREATE("create vehicle", new Create()), PRINT("Print vehicles", new Print()), UPDATE("Update vehicle", new Update());
+    CREATE("create vehicle", new Create()),
+    UPDATE("Update vehicle", new Update()),
+    PRINT("Print vehicles", new Print()),
+    EXIT("Exit", null);
+
 
     private final String name;
     private final Command command;

@@ -2,6 +2,7 @@ package com.service;
 
 import com.model.vehicle.Auto;
 import com.model.vehicle.Manufacturer;
+import com.repository.AutoRepository;
 import com.repository.CrudRepo;
 
 import java.math.BigDecimal;
@@ -10,9 +11,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class AutoService extends Service<Auto> {
+    private static AutoService instanse;
 
-    public AutoService(CrudRepo<Auto> repository) {
+    private AutoService(CrudRepo<Auto> repository) {
        super(repository);
+    }
+
+    public static AutoService getInstanse() {
+        if(instanse == null){
+            instanse = new AutoService(AutoRepository.getInstance());
+        }
+        return instanse;
     }
 
     public Auto create(){

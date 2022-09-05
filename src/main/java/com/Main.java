@@ -1,7 +1,9 @@
 package com;
 
 import com.command.Action;
+import com.command.Command;
 import com.command.Create;
+import com.command.Print;
 import com.model.vehicle.*;
 import com.repository.AutoRepository;
 import com.repository.BusRepiository;
@@ -11,18 +13,20 @@ import com.service.BusService;
 import com.service.MotoService;
 import com.util.Container;
 import com.util.Garage;
+import com.util.UserInputUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static final AutoService AUTO_SERVICE = new AutoService(new AutoRepository());
-    private static final BusService BUS_SERVICE = new BusService(new BusRepiository());
-    private static final MotoService MOTO_SERVICE = new MotoService(new MotoRepository());
+    private static final AutoService AUTO_SERVICE =AutoService.getInstanse();
+    private static final BusService BUS_SERVICE = BusService.getInstance();
+    private static final MotoService MOTO_SERVICE = MotoService.getInstance();
     private static Container container = new Container();
     private static Garage<Vehicle> garage = new Garage<Vehicle>();
 
@@ -32,17 +36,24 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("==============================hw15==========================================");
         final Action[] actions = Action.values();
-        int userInput;
+        final List<String> names = getNames(actions);
+
+        Command command;
         do {
-            do {
-                System.out.println("What you want:");
-                for (int i = 0; i < actions.length; i++) {
-                    System.out.printf("%d) %s%n", i, actions[i]);
-                }
-                userInput = SCANNER.nextInt();
-            } while (userInput < 0 || userInput >= actions.length);
-            actions[userInput].execute();
-        }while (true);
+            int userInput = UserInputUtil.getUserInput("What you want: ", names );
+            command = actions[userInput].getCommand();
+            if(command!= null) {
+                actions[userInput].execute();
+            }
+        }while (command!= null);
+    }
+
+    private static List<String> getNames(Action[] actions) {
+        final List<String> names = new ArrayList<>(actions.length);
+        for(Action action: actions){
+            names.add(action.getName());
+        }
+        return names;
     }
 //        System.out.println("- - - - - - -  hw14  - - - - - - - - ");
 //        final Garage<Vehicle> vehicleList = new Garage<>();

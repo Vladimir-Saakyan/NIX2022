@@ -20,12 +20,9 @@ import java.util.List;
 @Getter
 @Setter
 public class Container {
-    private final AutoService AUTO_SERVICE =
-            new AutoService(new AutoRepository());
-    private final BusService BUS_SERVICE =
-            new BusService(new BusRepiository());
-    private final MotoService MOTO_SERVICE =
-            new MotoService(new MotoRepository());
+    private final AutoService AUTO_SERVICE = AutoService.getInstanse();
+    private final BusService BUS_SERVICE =BusService.getInstance();
+    private final MotoService MOTO_SERVICE =MotoService.getInstance();
 
     public Container() {
 

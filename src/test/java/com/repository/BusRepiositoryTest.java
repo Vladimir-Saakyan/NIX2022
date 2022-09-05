@@ -16,7 +16,7 @@ class BusRepiositoryTest {
 
     @BeforeEach
     void setUp() {
-        target = new BusRepiository();
+        target = BusRepiository.getInstance();
         bus = createSimpleBus();
         target.createCar(bus);
     }

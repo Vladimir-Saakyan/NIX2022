@@ -27,6 +27,7 @@ public abstract class Service<T extends Vehicle> {
             result.add(vehicle);
             repository.createCar(vehicle);
             LOGGER.debug("Created vehicle {}", vehicle.getId());
+            System.out.println(vehicle.getClass());
         }
         return result;
     }

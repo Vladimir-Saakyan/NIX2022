@@ -4,18 +4,26 @@ import com.model.vehicle.Manufacturer;
 import com.model.vehicle.Moto;
 import com.model.vehicle.Vehicle;
 import com.repository.CrudRepo;
+import com.repository.MotoRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MotoService extends Service {
+    private static MotoService instance;
 
 
-    public MotoService(CrudRepo<Moto> repository) {
+    private MotoService(CrudRepo<Moto> repository) {
        super(repository);
     }
 
+    public static MotoService getInstance() {
+        if (instance == null) {
+            instance = new MotoService(MotoRepository.getInstance());
+        }
+        return instance;
+    }
     @Override
     protected Vehicle create() {
         return new Moto(

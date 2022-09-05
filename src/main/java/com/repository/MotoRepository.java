@@ -14,8 +14,17 @@ public class MotoRepository implements CrudRepo<Moto> {
     private static final Logger LOGGER = LoggerFactory.getLogger(MotoService.class);
     private final List<Moto> motos;
 
-    public MotoRepository(){
+    private static MotoRepository instance;
+
+    private MotoRepository(){
         motos = new LinkedList<>();
+    }
+
+    public static MotoRepository getInstance(){
+        if(instance == null){
+            instance = new MotoRepository();
+        }
+        return instance;
     }
 
 
