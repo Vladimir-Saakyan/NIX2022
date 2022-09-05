@@ -11,7 +11,7 @@ import java.time.LocalTime;
 public class Auto extends Vehicle {
     private String bodyType;
 
-    public Auto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, String date) {
+    public Auto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, LocalTime date) {
         super(model, manufacturer, price,number, date);
         this.bodyType = bodyType;
     }

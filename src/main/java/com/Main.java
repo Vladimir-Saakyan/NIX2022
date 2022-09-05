@@ -11,9 +11,10 @@ import com.util.Container;
 import com.util.Garage;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.time.LocalTime;
+import java.util.*;
+
+import static java.time.LocalTime.*;
 
 public class Main {
     private static final AutoService AUTO_SERVICE = new AutoService(new AutoRepository());
@@ -44,7 +45,7 @@ public class Main {
         }
         System.out.println("add moto, return size of Garage : "+vehicleList.size());
 
-        vehicleList.add(new Auto("sedan", Manufacturer.KIA, BigDecimal.ONE, "qwerty", 1, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+        vehicleList.add(new Auto("sedan", Manufacturer.KIA, BigDecimal.ONE, "qwerty", 1, now()));
 
         System.out.println("add new Auto, return size of Garage : "+vehicleList.size() + "\n new Auto - "+vehicleList.get(garage.size()));
 
@@ -61,8 +62,21 @@ public class Main {
         }
         System.out.println("amount of nubmers: " +vehicleList.amountofRest(2));
 
+        List<Vehicle> vehicleArrayList = new ArrayList<>();
+        for (Vehicle vehicle: vehicleList){
+            vehicleArrayList.add(vehicle);
+        }
 
+        vehicleArrayList.toArray();
+
+        vehicleArrayList.sort(new CompareByPrice());
+        for (Vehicle vehicle: vehicleArrayList){
+            System.out.println(vehicle);
+        };
+        System.out.println("=========================");
+        vehicleArrayList.sort(new CompareByModel());
+        for (Vehicle vehicle: vehicleArrayList){
+            System.out.println(vehicle);
+        }
     }
-
-
 }

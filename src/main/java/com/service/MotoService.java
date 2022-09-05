@@ -7,6 +7,7 @@ import com.repository.CrudRepo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class MotoService extends Service {
@@ -23,7 +24,7 @@ public class MotoService extends Service {
                 getRandomManufacturer(),
                 BigDecimal.valueOf(RANDOM.nextDouble(1000.0)),
                 "Model MOto-" + RANDOM.nextInt(1000),
-                RANDOM.nextInt(10), LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                RANDOM.nextInt(10), LocalTime.now()
         );
     }
     private Manufacturer getRandomManufacturer() {

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -51,7 +52,7 @@ public class AutoRepository implements CrudRepo<Auto> {
         final Auto auto = new Auto("qwerty",
                 Manufacturer.KIA,
                 BigDecimal.ZERO,
-                "qwerty", 2, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                "qwerty", 2, LocalTime.now());
         return auto;
     }
 

@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class Moto extends Vehicle {
     private String bodyType;
 
-    public Moto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, String date) {
+    public Moto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, LocalTime date) {
         super(model, manufacturer, price, number, date);
         this.bodyType = bodyType;
     }

@@ -3,11 +3,10 @@ package com.util;
 import com.model.vehicle.Vehicle;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
+public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T> {
     private int size =0;
     private LocalTime date;
 
@@ -117,9 +116,6 @@ public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
         first = last = null;
         size = 0;
     }
-
-
-
     @Getter
     static class Node<T> {
         T el;

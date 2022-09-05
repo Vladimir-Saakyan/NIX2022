@@ -1,5 +1,7 @@
 package com.util;
 
+import com.model.vehicle.Vehicle;
+
 public interface LinkList<T> {
 
     void add(T el);
