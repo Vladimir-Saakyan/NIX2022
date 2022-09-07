@@ -1,19 +1,18 @@
-package com.model;
+package com.model.vehicle;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Optional;
-import java.util.function.Supplier;
+import java.time.LocalTime;
 
 @Getter
 @Setter
 public class Auto extends Vehicle {
     private String bodyType;
 
-    public Auto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType) {
-        super(model, manufacturer, price);
+    public Auto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, LocalTime date) {
+        super(model, manufacturer, price,number, date);
         this.bodyType = bodyType;
     }
 
@@ -25,6 +24,8 @@ public class Auto extends Vehicle {
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", manufacturer=" + manufacturer +
+                ", restailing num - " + numberRest+
+                ", date created :" + date+
                 '}';
     }
 }

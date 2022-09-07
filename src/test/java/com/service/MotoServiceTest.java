@@ -1,8 +1,8 @@
 //package com.service;
 //
-//import com.model.Auto;
-//import com.model.Manufacturer;
-//import com.model.Moto;
+//import com.model.vehicle.Auto;
+//import com.model.vehicle.Manufacturer;
+//import com.model.vehicle.Moto;
 //import com.repository.MotoRepository;
 //import org.junit.jupiter.api.Assertions;
 //import org.junit.jupiter.api.BeforeEach;

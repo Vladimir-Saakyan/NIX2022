@@ -1,18 +1,19 @@
-package com.model;
+package com.model.vehicle;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 @Getter
 @Setter
 
-public class Moto extends Vehicle{
+public class Moto extends Vehicle {
     private String bodyType;
 
-    public Moto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType) {
-        super(model, manufacturer, price);
+    public Moto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, LocalTime date) {
+        super(model, manufacturer, price, number, date);
         this.bodyType = bodyType;
     }
 
@@ -24,6 +25,8 @@ public class Moto extends Vehicle{
                 ", model='" + model + '\'' +
                 ", price=" + price +
                 ", manufacturer=" + manufacturer +
+                ", restailing num - " + numberRest+
+                ", date created :" + date+
                 '}';
     }
 }

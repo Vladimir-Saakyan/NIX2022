@@ -1,18 +1,14 @@
 package com.service;
 
-import com.model.Manufacturer;
-import com.model.Moto;
-import com.model.Vehicle;
+import com.model.vehicle.Manufacturer;
+import com.model.vehicle.Moto;
+import com.model.vehicle.Vehicle;
 import com.repository.CrudRepo;
-import com.repository.MotoRepository;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class MotoService extends Service {
 
@@ -27,7 +23,8 @@ public class MotoService extends Service {
                 "Model Moto -" + RANDOM.nextInt(1000),
                 getRandomManufacturer(),
                 BigDecimal.valueOf(RANDOM.nextDouble(1000.0)),
-                "Model MOto-" + RANDOM.nextInt(1000)
+                "Model MOto-" + RANDOM.nextInt(1000),
+                RANDOM.nextInt(10), LocalTime.now()
         );
     }
     private Manufacturer getRandomManufacturer() {

@@ -1,16 +1,18 @@
 package com.repository;
 
-import com.model.Auto;
-import com.model.Manufacturer;
+import com.model.vehicle.Auto;
+import com.model.vehicle.Manufacturer;
 import com.service.AutoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 public class AutoRepository implements CrudRepo<Auto> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoService.class);
@@ -50,7 +52,7 @@ public class AutoRepository implements CrudRepo<Auto> {
         final Auto auto = new Auto("qwerty",
                 Manufacturer.KIA,
                 BigDecimal.ZERO,
-                "qwerty");
+                "qwerty", 2, LocalTime.now());
         return auto;
     }
 
