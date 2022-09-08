@@ -17,8 +17,11 @@ public enum Action {
         this.command = command;
     }
 
-    public void execute(){
-        command.execute();
+    public Command execute(){
+        if(command != null) {
+            command.execute();
+        }
+        return command;
     }
 
 }
