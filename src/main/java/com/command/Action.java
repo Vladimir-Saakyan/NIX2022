@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum Action {
     CREATE("create vehicle", new Create()),
     UPDATE("Update vehicle", new Update()),
+    DELETE("Delete vehicle", new Delete()),
     PRINT("Print vehicles", new Print()),
     EXIT("Exit", null);
 

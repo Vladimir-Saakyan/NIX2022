@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public abstract class Service<T extends Vehicle> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
@@ -43,11 +44,31 @@ public abstract class Service<T extends Vehicle> {
 
 
     public T update(T vehicle) {
+        updateInMenu();
         repository.updateCar(vehicle);
         return vehicle;
     }
 
-    public void delete(String id) {
+    public T updateInMenu(){
+        System.out.println("change car for update: ");
+        for (T vehicle : repository.getAllCar()) {
+            System.out.println(vehicle);
+        }
+        Scanner sc = new Scanner(System.in);
+        final String id = sc.nextLine();
+        T vehicle = repository.getByIdCar(id);
+        repository.updateCar(vehicle);
+        return vehicle;
+    }
+
+    public void delete() {
+        System.out.println("change car for delete: ");
+        for (T vehicle : repository.getAllCar()) {
+            System.out.println(vehicle);
+        }
+        Scanner sc = new Scanner(System.in);
+        final String id = sc.nextLine();
+        T vehicle = repository.getByIdCar(id);
         repository.deleteCar(id);
         System.out.println(id);
     }
