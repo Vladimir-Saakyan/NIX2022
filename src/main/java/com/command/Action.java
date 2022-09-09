@@ -1,5 +1,6 @@
 package com.command;
 
+import com.util.binaryThree.Run;
 import lombok.Getter;
 
 @Getter
@@ -8,6 +9,8 @@ public enum Action {
     UPDATE("Update vehicle", new Update()),
     DELETE("Delete vehicle", new Delete()),
     PRINT("Print vehicles", new Print()),
+    PRINTALL("Print all vehicles", new PrintAll()),
+    RUNTREE("Run trees", new Run()),
     EXIT("Exit", null);
 
 
