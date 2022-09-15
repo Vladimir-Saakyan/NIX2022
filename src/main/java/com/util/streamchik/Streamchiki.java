@@ -30,6 +30,7 @@ public class Streamchiki implements Command {
             case SUMPRICE-> FIND_AND_PRINT_CAR.sumPrices();
             case SORTBYNAME -> FIND_AND_PRINT_CAR.sortVehicle();
             case REMOVEDUBL->FIND_AND_PRINT_CAR.removeDyblic();
+            case STATISTICBYPRICE -> FIND_AND_PRINT_CAR.statistic();
         }
     }
 

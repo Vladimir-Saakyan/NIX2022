@@ -1,5 +1,5 @@
 package com.util.streamchik;
 
 public enum TypeStream {
-    GETCAR, SUMPRICE, REMOVEDUBL, SORTBYNAME
+    GETCAR, SUMPRICE, REMOVEDUBL, STATISTICBYPRICE, SORTBYNAME
 }

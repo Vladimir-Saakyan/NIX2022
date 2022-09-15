@@ -28,13 +28,11 @@ public class FindAndPrintCar {
 
     }
 
-//    private List<? extends Vehicle> createListForStream() {
-//        final List<Vehicle> vehicleList = new LinkedList<>();
-//        vehicleList.addAll(repoAuto.getAllCar());
-//        vehicleList.addAll(repoBus.getAllCar());
-//        vehicleList.addAll(repoMoto.getAllCar());
-//        return vehicleList;
-//    }
+    public void statistic(){
+        List<Vehicle> cars = createListForStream();
+        List<Vehicle> carsPriceToDouble = new ArrayList<Vehicle>();
+
+    }
 
 
     private List<Vehicle> createListForStream() {
@@ -46,7 +44,7 @@ public class FindAndPrintCar {
     }
 
     public void addListByDetailsForCar(String id){
-        Map<String, VehicleType> mapCar = createMap(createListForStream());
+
     }
 
     private Map<String, VehicleType> createMap(List<Vehicle> vehicleList){
