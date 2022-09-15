@@ -6,10 +6,7 @@ import com.repository.CrudRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class Service<T extends Vehicle> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
