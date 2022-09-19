@@ -3,6 +3,9 @@ package com;
 import com.command.Action;
 import com.command.Command;
 import com.model.vehicle.*;
+import com.repository.AutoRepository;
+import com.repository.BusRepiository;
+import com.repository.MotoRepository;
 import com.service.AutoService;
 import com.service.BusService;
 import com.service.MotoService;
@@ -10,15 +13,18 @@ import com.util.Container;
 import com.util.Garage;
 import com.util.UserInputUtil;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.nio.file.Path;
+import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.util.*;
 
-public class Main {
+import static java.time.LocalTime.*;
 
-    private static final Scanner SCANNER = new Scanner(System.in);
+public class Main {
+    private static final AutoService AUTO_SERVICE = new AutoService(new AutoRepository());
+    private static final BusService BUS_SERVICE = new BusService(new BusRepiository());
+    private static final MotoService MOTO_SERVICE = new MotoService(new MotoRepository());
+    private static Container container = new Container();
+    private static Garage<Vehicle> garage = new Garage<Vehicle>();
 
 
     public static void main(String[] args) {

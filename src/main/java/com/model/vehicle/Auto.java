@@ -4,14 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 @Getter
 @Setter
 public class Auto extends Vehicle {
     private String bodyType;
 
-    public Auto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, String date) {
-        super(model, manufacturer, price,number, date, VehicleType.AUTO);
+    public Auto(String model, Manufacturer manufacturer, BigDecimal price, String bodyType, int number, LocalTime date) {
+        super(model, manufacturer, price,number, date);
         this.bodyType = bodyType;
     }
 
