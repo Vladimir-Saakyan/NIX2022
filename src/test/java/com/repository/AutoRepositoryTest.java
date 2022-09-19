@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,7 +25,7 @@ class AutoRepositoryTest {
     }
 
     private Auto createSimpleAuto(){
-        return new Auto("7", Manufacturer.BMW, BigDecimal.ZERO,"sedan");
+        return new Auto("7", Manufacturer.BMW, BigDecimal.ZERO,"sedan", 2, LocalDate.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 
     @Test

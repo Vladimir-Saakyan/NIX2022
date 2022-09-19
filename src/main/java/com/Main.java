@@ -1,5 +1,7 @@
 package com;
 
+import com.command.Action;
+import com.command.Command;
 import com.model.vehicle.*;
 import com.repository.AutoRepository;
 import com.repository.BusRepiository;
@@ -9,6 +11,7 @@ import com.service.BusService;
 import com.service.MotoService;
 import com.util.Container;
 import com.util.Garage;
+import com.util.UserInputUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;
@@ -26,57 +29,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("- - - - - - -  hw14  - - - - - - - - ");
-        final Garage<Vehicle> vehicleList = new Garage<>();
-        final List<Auto > autos = AUTO_SERVICE.createAndSaveAutos(5);
-        final List<Bus> buses = BUS_SERVICE.createAndSaveAutos(2);
-        final List<Moto> motos = MOTO_SERVICE.createAndSaveAutos(5);
-        for(Auto vehicle: autos){
-            vehicleList.add(vehicle);
-            System.out.println("new car: "+ vehicle.getId()+" Time Created: " + vehicle.getDate() );
-        }
-        System.out.println("add auto, return size of Garage : "+ vehicleList.size());
-        for(Bus vehicle: buses){
-            vehicleList.add(vehicle);
-        }
-        System.out.println("add bus, return size of Garage : "+vehicleList.size());
-        for(Moto vehicle: motos){
-            vehicleList.add(vehicle);
-        }
-        System.out.println("add moto, return size of Garage : "+vehicleList.size());
+        final Action[] actions = Action.values();
+        final List<String> names = getNames(actions);
 
-        vehicleList.add(new Auto("sedan", Manufacturer.KIA, BigDecimal.ONE, "qwerty", 1, now()));
+        Command command;
+        do {
+            command = executeCommand(actions, names);
+        } while (command != null);
+    }
 
-        System.out.println("add new Auto, return size of Garage : "+vehicleList.size() + "\n new Auto - "+vehicleList.get(garage.size()));
+    private static Command executeCommand(Action[] actions, List<String> names){
+        int userInput = UserInputUtil.getUserInput("What you want: ", names);
+        final Action action = actions[userInput];
+        return action.execute();
+    }
 
-        System.out.println("===-=====" );
-        for(Vehicle vehicle: vehicleList){
-            System.out.println(vehicle);
+    private static List<String> getNames(Action[] actions) {
+        final List<String> names = new ArrayList<>(actions.length);
+        for (Action action : actions) {
+            names.add(action.getName());
         }
-
-        vehicleList.findByRestNumber(1);
-        vehicleList.removeByNumberOfRestailing(1);
-        System.out.println("===-=====" );
-        for(Vehicle vehicle: vehicleList){
-            System.out.println(vehicle);
-        }
-        System.out.println("amount of nubmers: " +vehicleList.amountofRest(2));
-
-        List<Vehicle> vehicleArrayList = new ArrayList<>();
-        for (Vehicle vehicle: vehicleList){
-            vehicleArrayList.add(vehicle);
-        }
-
-        vehicleArrayList.toArray();
-
-        vehicleArrayList.sort(new CompareByPrice());
-        for (Vehicle vehicle: vehicleArrayList){
-            System.out.println(vehicle);
-        };
-        System.out.println("=========================");
-        vehicleArrayList.sort(new CompareByModel());
-        for (Vehicle vehicle: vehicleArrayList){
-            System.out.println(vehicle);
-        }
+        return names;
     }
 }
+
+

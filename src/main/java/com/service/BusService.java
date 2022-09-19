@@ -2,6 +2,7 @@ package com.service;
 
 import com.model.vehicle.Bus;
 import com.model.vehicle.Manufacturer;
+import com.repository.BusRepiository;
 import com.repository.CrudRepo;
 
 import java.math.BigDecimal;
@@ -12,8 +13,17 @@ import java.util.Random;
 
 public class BusService extends Service<Bus> {
 
-    public BusService(CrudRepo<Bus> repository){
+    private static BusService instance;
+
+    private BusService(CrudRepo<Bus> repository){
         super(repository);
+    }
+
+    public static BusService getInstance(){
+        if(instance == null){
+            instance = new BusService(BusRepiository.getInstance());
+        }
+        return instance;
     }
 
     @Override

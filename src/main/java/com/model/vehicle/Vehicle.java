@@ -27,7 +27,4 @@ public abstract class Vehicle {
         this.numberRest= numberRest;
         this.date = date;
     }
-
 }
-
-

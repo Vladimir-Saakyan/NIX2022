@@ -18,8 +18,17 @@ public class AutoRepository implements CrudRepo<Auto> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AutoService.class);
     private final List<Auto> autos;
 
-    public AutoRepository() {
+    private static AutoRepository instance;
+
+    private AutoRepository() {
         autos = new LinkedList<>();
+    }
+
+    public static AutoRepository getInstance(){
+        if(instance == null) {
+            instance = new AutoRepository();
+        }
+        return instance;
     }
 
 
