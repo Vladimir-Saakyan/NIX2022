@@ -1,21 +1,12 @@
 package com.util.streamchik;
 
 import com.command.Command;
-import com.model.vehicle.Vehicle;
-import com.service.AutoService;
-import com.service.BusService;
-import com.service.MotoService;
 import com.util.UserInputUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Streamchiki implements Command {
-    private static final AutoService AUTO_SERVICE = AutoService.getInstanse();
-    private static final BusService BUS_SERVICE = BusService.getInstance();
-    private static final MotoService MOTO_SERVICE = MotoService.getInstance();
     private static final FindAndPrintCar FIND_AND_PRINT_CAR = new FindAndPrintCar();
 
     @Override
@@ -31,6 +22,7 @@ public class Streamchiki implements Command {
             case SORTBYNAME -> FIND_AND_PRINT_CAR.sortVehicle();
             case REMOVEDUBL->FIND_AND_PRINT_CAR.removeDyblic();
             case STATISTICBYPRICE -> FIND_AND_PRINT_CAR.statistic();
+            case PREDICATE -> FIND_AND_PRINT_CAR.predicateForCar();
         }
     }
 

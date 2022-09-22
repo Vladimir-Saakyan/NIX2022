@@ -19,7 +19,7 @@ public class AutoRepository implements CrudRepo<Auto> {
 
     private static AutoRepository instance;
 
-    private AutoRepository() {
+    public AutoRepository() {
         autos = new LinkedList<>();
     }
 
@@ -55,13 +55,6 @@ public class AutoRepository implements CrudRepo<Auto> {
             auto.setPrice(BigDecimal.valueOf(-1));
         }
         return  autos.add(auto);
-    }
-    public Auto getcreateDefaultCar(){
-        final Auto auto = new Auto("qwerty",
-                Manufacturer.KIA,
-                BigDecimal.ZERO,
-                "qwerty", 2, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        return auto;
     }
 
     @Override

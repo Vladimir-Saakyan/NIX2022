@@ -5,21 +5,12 @@ import com.model.vehicle.VehicleType;
 import com.repository.AutoRepository;
 import com.repository.BusRepiository;
 import com.repository.MotoRepository;
-import com.service.AutoService;
-import com.service.BusService;
-import com.service.MotoService;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class FindAndPrintCar {
-    private static final AutoService AUTO_SERVICE = AutoService.getInstanse();
-    private static final BusService BUS_SERVICE = BusService.getInstance();
-    private static final MotoService MOTO_SERVICE = MotoService.getInstance();
     private static final AutoRepository repoAuto = AutoRepository.getInstance();
     private static final BusRepiository repoBus = BusRepiository.getInstance();
     private static final MotoRepository repoMoto = MotoRepository.getInstance();
@@ -28,12 +19,10 @@ public class FindAndPrintCar {
 
     }
 
-    public void statistic(){
+    public void statistic() {
         List<Vehicle> cars = createListForStream();
         List<Vehicle> carsPriceToDouble = new ArrayList<Vehicle>();
-
     }
-
 
     private List<Vehicle> createListForStream() {
         final List<Vehicle> vehicleList = new LinkedList<>();
@@ -43,12 +32,12 @@ public class FindAndPrintCar {
         return vehicleList;
     }
 
-    public void addListByDetailsForCar(String id){
+    public void addListByDetailsForCar(String id) {
 
     }
 
-    private Map<String, VehicleType> createMap(List<Vehicle> vehicleList){
-       return vehicleList.stream().collect(Collectors.toMap(Vehicle::getId, Vehicle::getType));
+    private Map<String, VehicleType> createMap(List<Vehicle> vehicleList) {
+        return vehicleList.stream().collect(Collectors.toMap(Vehicle::getId, Vehicle::getType));
     }
 
     public void PrintCarByXPrice() {
@@ -62,7 +51,7 @@ public class FindAndPrintCar {
         vehicleList.forEach(System.out::println);
     }
 
-    public void sumPrices(){
+    public void sumPrices() {
         final List<Vehicle> vehicleList = createListForStream();
         List<BigDecimal> prices = vehicleList.stream().map(Vehicle::getPrice).toList();
 
@@ -70,7 +59,7 @@ public class FindAndPrintCar {
         System.out.println(result);
     }
 
-    public void sortVehicle(){
+    public void sortVehicle() {
         final List<Vehicle> vehicleList = createListForStream();
 
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -78,9 +67,16 @@ public class FindAndPrintCar {
         result.forEach(System.out::println);
     }
 
-    public void removeDyblic(){
+    public void removeDyblic() {
         final List<Vehicle> vehicleList = createListForStream();
         vehicleList.stream().distinct().forEach(System.out::println);
     }
+
+    public void predicateForCar() {
+        List<Vehicle> vehicleList = createListForStream();
+        vehicleList.removeIf(car -> car.getPrice().equals(null));
+        vehicleList.stream().forEach(System.out::println);
+    }
+
 
 }

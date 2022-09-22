@@ -5,6 +5,8 @@ import com.model.vehicle.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class VehicleFactory {
@@ -35,7 +37,9 @@ public class VehicleFactory {
                     getRandomManufacturer(),
                     BigDecimal.valueOf(RANDOM.nextDouble(1000.0)),
                     "Model-" + RANDOM.nextInt(1000),
-                    RANDOM.nextInt(10), LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                    RANDOM.nextInt(10),
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                    getDefaultList()
             );
 
             case MOTO -> new Moto(
@@ -53,5 +57,10 @@ public class VehicleFactory {
         final Manufacturer[] values = Manufacturer.values();
         final int index = RANDOM.nextInt(values.length);
         return values[index];
+    }
+    private List<String> getDefaultList(){
+        List<String> list = new ArrayList<>();
+        list.add(1,"engine");
+        return list;
     }
 }

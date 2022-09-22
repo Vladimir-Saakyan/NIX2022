@@ -1,7 +1,7 @@
 package com.repository;
 
 import com.model.vehicle.Moto;
-import com.service.MotoService;
+import com.service.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MotoRepository implements CrudRepo<Moto> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MotoService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Service.class);
     private final List<Moto> motos;
 
     private static MotoRepository instance;
