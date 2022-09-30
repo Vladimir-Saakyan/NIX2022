@@ -7,6 +7,7 @@ import com.repository.CrudRepo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
@@ -32,7 +33,7 @@ public class BusService extends Service<Bus> {
                 getRandomManufacturer(),
                 BigDecimal.valueOf(RANDOM.nextDouble(1000.0)),
                 "Model Bus-" + RANDOM.nextInt(1000),
-                RANDOM.nextInt(10), LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                RANDOM.nextInt(10), LocalTime.now()
         );
     }
     private Manufacturer getRandomManufacturer() {

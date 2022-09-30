@@ -28,5 +28,4 @@ public abstract class Vehicle {
         this.date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:MM:SS"));
         this.type = type;
     }
-
 }

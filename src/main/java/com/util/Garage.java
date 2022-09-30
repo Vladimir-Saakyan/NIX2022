@@ -3,13 +3,12 @@ package com.util;
 import com.model.vehicle.Vehicle;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 import java.util.*;
 
-public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
+public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T> {
     private int size =0;
-    private String date;
+    private LocalTime date;
 
     private Node<T> first;
     private Node<T> last;
@@ -28,7 +27,10 @@ public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
     public void add(T el) {
         Node<T> newNode = new Node<>(el);
         if(first == null) first = last = newNode;
-        else this.last.next = newNode;
+        else {
+            last.next = newNode;
+            last = newNode;
+        }
         size++;
     }
 
@@ -40,24 +42,6 @@ public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
         }
         return current;
     }
-
-    @Override
-    public T set(T el){
-        size++;
-        Node<T> node = new Node<>(el);
-        last = node;
-        return last.el;
-    }
-
-    @Override
-    public T set(int index, T el){
-        Objects.checkIndex(index, size);
-        Node<T> node = getNodeByIndex(index);
-        T oldVal = node.el;
-        node.el = el;
-        return oldVal;
-    }
-
     @Override
     public T get(int index){
         Objects.checkIndex(index, size);
@@ -65,56 +49,53 @@ public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
     }
 
     @Override
-    public boolean findOfNumber(int number) {
+    public void remove(T el) {
+        Node<T> current = first;
+        while (current.el!= el){
+            current = current.next;
+            if(current==null){
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        if(current.next != null){
+            current.next.last = current.last;
+        }
+        if(current.last != null) {
+            current.last.next = current.next;
+        }
+    }
+
+    public int amountofRest(int numberofRest) {
+        int amount = 0;
         for (int i = 0; i < size; i++) {
             int find = get(i).getNumberRest();
-            if (find == number) {
+            if (find == numberofRest) {
                 System.out.println("your car for that number - " + get(i));
-            } throw new IllegalArgumentException("number is not " + number);
+                amount++;
+            }
         }
-        return false;
+        return amount;
     }
 
-    @Override
-    public T getFirst(){
-        if(isEmpty()){
-            throw new NoSuchElementException();
-        }
-        return get(0);
-    }
-
-    @Override
-    public T getLast(){
-        if(isEmpty()){
-            throw new NoSuchElementException();
-        }
-        return get(size -1);
-    }
-
-    @Override
-    public boolean remove(int numberofRest){
-
-        for (int i = 0; i<size; i++){
-            if(numberofRest == get(i).getNumberRest()){
-                Node<T> prev = getNodeByIndex(i-1);
-                prev.next=prev.next.next;
-                size--;
-            }else System.out.println(numberofRest + "no this car");
-        }
-        return false;
-    }
-
-    @Override
-    public boolean contains(T el){
-        Node<T> current = first;
-        for (int i = 0; i < size; i++){
-            if(current.el.equals(el)){
-                return true;
+    public boolean removeByNumberOfRestailing(int numberofRest){
+        for (int i = 0; i < size; i++) {
+            int find = get(i).getNumberRest();
+            if (find == numberofRest) {
+                System.out.println("your car for that number - " + get(i));
+                remove(get(i));
             }
         }
         return false;
     }
-
+    public boolean findByRestNumber(int number){
+        for (int i = 0; i < size; i++) {
+            int find = get(i).getNumberRest();
+            if (find == number) {
+                System.out.println("your car for that number - " + get(i));
+            }
+        }
+        return false;
+    }
     @Override
     public String getDate(int index){
         return getDate(index);
@@ -135,13 +116,11 @@ public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
         first = last = null;
         size = 0;
     }
-
-
-
     @Getter
     static class Node<T> {
         T el;
         Node<T> next;
+        Node<T> last;
 
         public Node(T el){
             this.el = el;
@@ -149,7 +128,6 @@ public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
 
         public static <T> void link(Node<T> first, Node<T> second){
             first.next = second;
-
         }
     }
 
@@ -176,10 +154,6 @@ public class Garage<T extends Vehicle> implements LinkList<T>, Iterable<T>{
             T value = curr.el;
             curr = curr.next;
             return value;
-        }
-
-        public void remove() {
-            throw new UnsupportedOperationException();
         }
     }
 
