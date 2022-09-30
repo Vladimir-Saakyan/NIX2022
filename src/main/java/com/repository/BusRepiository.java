@@ -17,7 +17,7 @@ public class BusRepiository implements CrudRepo<Bus> {
 
     private static BusRepiository instance;
 
-    private BusRepiository() {
+    public BusRepiository() {
         buses = new LinkedList<>();
     }
 

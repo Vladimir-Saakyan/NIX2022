@@ -28,9 +28,9 @@ public class Create implements Command {
         final VehicleType value = values[userInput];
 
         switch (value){
-            case AUTO -> AUTO_SERVICE.createAndSaveAutos(1);
-            case BUS -> BUS_SERVICE.createAndSaveAutos(1);
-            case MOTO -> MOTO_SERVICE.createAndSaveAutos(2);
+            case AUTO -> AUTO_SERVICE.createAndSaveAutos(10);
+            case BUS -> BUS_SERVICE.createAndSaveAutos(10);
+            case MOTO -> MOTO_SERVICE.createAndSaveAutos(10);
             default -> throw new IllegalArgumentException("Cannot build: " + value);
         }
     }

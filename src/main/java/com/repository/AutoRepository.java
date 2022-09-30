@@ -20,7 +20,7 @@ public class AutoRepository implements CrudRepo<Auto> {
 
     private static AutoRepository instance;
 
-    private AutoRepository() {
+    public AutoRepository() {
         autos = new LinkedList<>();
     }
 
@@ -57,13 +57,7 @@ public class AutoRepository implements CrudRepo<Auto> {
         }
         return  autos.add(auto);
     }
-    public Auto getcreateDefaultCar(){
-        final Auto auto = new Auto("qwerty",
-                Manufacturer.KIA,
-                BigDecimal.ZERO,
-                "qwerty", 2, LocalTime.now());
-        return auto;
-    }
+
 
     @Override
     public boolean createAllCar(List<Auto> auto) {

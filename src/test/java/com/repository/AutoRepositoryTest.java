@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,16 +17,20 @@ import java.util.List;
 class AutoRepositoryTest {
     private AutoRepository target;
     private Auto auto;
+    private List<String> details= new ArrayList<String>();
 
     @BeforeEach
     void setUp() {
         target = new AutoRepository();
         auto = createSimpleAuto();
         target.createCar(auto);
+        details.add(1, "qwerty");
+
     }
 
     private Auto createSimpleAuto(){
-        return new Auto("7", Manufacturer.BMW, BigDecimal.ZERO,"sedan", 2, LocalDate.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+        return new Auto("7", Manufacturer.BMW, BigDecimal.ZERO,"sedan", 2, LocalDate.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),
+                details);
     }
 
     @Test
