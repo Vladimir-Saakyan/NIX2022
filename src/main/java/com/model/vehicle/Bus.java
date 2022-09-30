@@ -12,8 +12,8 @@ import java.time.LocalTime;
 public class Bus extends Vehicle {
     private String bodytype;
 
-    public Bus(String model, Manufacturer manufacturer, BigDecimal price, String bodytype, int number, String date) {
-        super(model, manufacturer, price, number, date, VehicleType.BUS);
+    public Bus(String model, Manufacturer manufacturer, BigDecimal price, String bodytype, int number, LocalTime date) {
+        super(model, manufacturer, price, number, date);
         this.bodytype = bodytype;
     }
 

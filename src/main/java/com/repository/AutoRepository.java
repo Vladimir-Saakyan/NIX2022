@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -56,6 +57,7 @@ public class AutoRepository implements CrudRepo<Auto> {
         }
         return  autos.add(auto);
     }
+
 
     @Override
     public boolean createAllCar(List<Auto> auto) {
